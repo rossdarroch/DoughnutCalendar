@@ -2,13 +2,13 @@
 
 import javax.swing.JScrollPane;
 import javax.swing.table.*;
+import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.JFrame;
 
+public class MonthlyView extends AndroidWindow {
 
-public class MonthlyView {
-
-	public MonthlyView(JFrame parent) {
+	@Override
+	public void setup(JPanel panel) {
 		TableModel dataModel = new AbstractTableModel() {
 			private static final long serialVersionUID = 1L;
 			private String[] week = {"", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
@@ -32,6 +32,6 @@ public class MonthlyView {
 		JScrollPane scrollpane = new JScrollPane(table);
 		
 		
-		parent.add(scrollpane);
+		panel.add(scrollpane);
 	}
 }

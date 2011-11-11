@@ -1,25 +1,15 @@
-import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class WeeklyView implements AndroidWindow {
-	private JFrame jframe;
-	
-	public void BackButtonPressed() {
-	}
+public class WeeklyView extends AndroidWindow {
+	private JPanel jpanel;
 
-	public void SettingsButtonPressed() {
-	}
-
-	public void HomeButtonPressed() {
-	}
-
-	public void start(JFrame frame) {
-		jframe = frame;
+	public void setup(JPanel panel) {
+		jpanel = panel;
 		init();
 	}
 
@@ -31,10 +21,11 @@ public class WeeklyView implements AndroidWindow {
 	    nav_panel.add(prevWeekButton); 
 	    nav_panel.add(nextWeekButton);
 
-		Container pan = jframe.getContentPane();
-
 		// TODO: add real calendar view
-		pan.add(nav_panel);
-
+		jpanel.add(nav_panel);
 	}
+
+	public void BackButtonPressed(JFrame frame, ActionEvent e) {
+	}
+
 }

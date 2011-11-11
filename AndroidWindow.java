@@ -1,11 +1,24 @@
-import javax.swing.JFrame;
+import java.awt.event.ActionEvent;
 
-public interface AndroidWindow {
-	public void BackButtonPressed();
-	public void SettingsButtonPressed();
-	public void HomeButtonPressed();
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+public abstract class AndroidWindow {
+	public void BackButtonPressed(JFrame frame, ActionEvent e) {
+		JOptionPane.showMessageDialog(frame, "Not implemented");
+	}
+	public void MenuButtonPressed(JFrame frame, ActionEvent e) {
+		JOptionPane.showMessageDialog(frame, "Not implemented");
+	}
+	public void HomeButtonPressed(JFrame frame, ActionEvent e) {
+		JOptionPane.showMessageDialog(frame, "Not implemented");
+	}
+	public void SearchButtonPressed(JFrame frame, ActionEvent e) {
+		JOptionPane.showMessageDialog(frame, "Not implemented");
+	}
 	/*
-	 * Sets up the environment and control is passed to you.
+	 * Sets up the environment
 	 */
-	public void start(JFrame frame);
+	public abstract void setup(JPanel panel);
 }
