@@ -1,8 +1,10 @@
 //import javax.swing.JPanel;
 
 import java.awt.Container;
+import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.*;
 import javax.swing.JTable;
 
@@ -11,10 +13,10 @@ public class MonthlyView extends AndroidWindow {
 	@Override
 	public void setup(Container panel) {
 		TableModel dataModel = new AbstractTableModel() {
-			private static final long serialVersionUID = 1L;
-			private String[] week = {"", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+			private static final long serialVersionUID = 89037589235789234L;
+			private String[] week = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 			public int getColumnCount() {
-				return 8;
+				return 7;
 			}
 
 			public int getRowCount() {
@@ -29,8 +31,22 @@ public class MonthlyView extends AndroidWindow {
 				return new Integer(row * col);
 			}
 		};
-		JTable table = new JTable(dataModel);
-		JScrollPane scrollpane = new JScrollPane(table);
+		JTable monthTable = new JTable(dataModel);
+		monthTable.setRowSelectionAllowed(false);
+		monthTable.setCellSelectionEnabled(true);
+		monthTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		//monthTable.setPreferredScrollableViewportSize(new Dimension(480, 800));
+		monthTable.doLayout();
+		
+		JScrollPane scrollpane = new JScrollPane(monthTable);
+		
+		
+		
+		JTable rowTable = new RowNumberTable(monthTable, 45);
+		scrollpane.setRowHeaderView(rowTable);
+		scrollpane.setCorner(JScrollPane.UPPER_LEFT_CORNER,
+		    rowTable.getTableHeader());
+		
 		panel.add(scrollpane);
 	}
 }

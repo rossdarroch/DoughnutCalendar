@@ -19,12 +19,13 @@ public class RowNumberTable extends JTable
 	implements ChangeListener, PropertyChangeListener
 {
 	private JTable main;
+	private int begin = 1;
 
-	public RowNumberTable(JTable table)
+	public RowNumberTable(JTable table, int begin)
 	{
 		main = table;
 		main.addPropertyChangeListener( this );
-
+		this.begin = begin;
 		setFocusable( false );
 		setAutoCreateColumnsFromModel( false );
 		setModel( main.getModel() );
@@ -77,7 +78,7 @@ public class RowNumberTable extends JTable
 	@Override
 	public Object getValueAt(int row, int column)
 	{
-		return Integer.toString(row + 1);
+		return Integer.toString(row + begin);
 	}
 
 	/*
