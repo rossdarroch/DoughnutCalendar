@@ -67,12 +67,13 @@ public class DoughnutCalendar extends JFrame implements ActionListener, WindowLi
 	    setSize(480, 800);
 	    setLocationRelativeTo(null); // centre
 	    
-	    AndroidWindow weeklyview = new WeeklyView();
+	    /* AndroidWindow weeklyview = new WeeklyView();
 	    weeklyview.start(this);
-
-	    pack();
-	    setVisible(true);
+	    */
 	    MonthlyView mv = new MonthlyView(this);
+	    //pack();
+	    setVisible(true);
+	    
 	}
 	
 
