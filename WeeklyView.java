@@ -1,3 +1,4 @@
+import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
@@ -6,9 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class WeeklyView extends AndroidWindow {
-	private JPanel jpanel;
+	private Container jpanel;
 
-	public void setup(JPanel panel) {
+	public void setup(Container panel) {
 		jpanel = panel;
 		init();
 	}

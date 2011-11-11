@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -8,77 +9,33 @@ import java.awt.event.WindowListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
-public class DoughnutCalendar extends JFrame implements ActionListener, WindowListener {
+public class DoughnutCalendar {
 	private static final long serialVersionUID = 3827356193478438879L;
 
 	AndroidWindow win;
 	JFrame frame;
-	@Override
-	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void windowClosing(WindowEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * @param args
-	 */
 	public DoughnutCalendar() {
-		frame = this;
-	    setTitle("Nexus Sieben");
-	    addWindowListener(new WinHandler());
+		frame = new JFrame();
+		
+	    frame.setTitle("Nexus Sieben");
+	    frame.addWindowListener(new WinHandler());
 
-	    // 800px for content, 200px for buttons
-	    setSize(480, 800+100);
-	    setLocationRelativeTo(null); // center
-	    this.setLayout(new BorderLayout());
+	    // 800px for content, 100px for buttons
+	    frame.setSize(480, 800+100);
+	    frame.setLocationRelativeTo(null); // center
+	    frame.setLayout(new BorderLayout());
+	    
 	    
 	    JPanel content = new JPanel();
-	    JPanel buttons = new JPanel();
+	    Container content_wrapper = new JScrollPane(content);
+	    //content_wrapper.add(content);
+	    JComponent buttons = new JPanel();
 	    buttons.setBorder(BorderFactory.createLineBorder(Color.black));
 
 	    win = new MonthlyView();
@@ -97,21 +54,19 @@ public class DoughnutCalendar extends JFrame implements ActionListener, WindowLi
 	    search.addActionListener(new SearchButtonHandler());
 	    buttons.add(search);
 	    
-	    this.add(content, BorderLayout.CENTER); // center
-	    this.add(buttons, BorderLayout.PAGE_END); // bottom
+	    frame.add(content_wrapper, BorderLayout.CENTER); // center
+	    frame.add(buttons, BorderLayout.PAGE_END); // bottom
 
 
 	    //pack();
-	    setVisible(true);
+	    frame.setVisible(true);
 	}
-	
 
 	public static void main(String[] args) {
 		new DoughnutCalendar();
-		
 	}
 	private class WinHandler extends WindowAdapter  {
-	    public void windowClosing (WindowEvent e) { dispose(); System.exit(0); }
+	    public void windowClosing (WindowEvent e) { frame.dispose(); System.exit(0); }
 	}
 	private class BackButtonHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {

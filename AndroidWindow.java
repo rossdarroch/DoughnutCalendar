@@ -1,3 +1,4 @@
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
@@ -20,5 +21,5 @@ public abstract class AndroidWindow {
 	/*
 	 * Sets up the environment
 	 */
-	public abstract void setup(JPanel panel);
+	public abstract void setup(Container panel);
 }
