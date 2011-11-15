@@ -1,12 +1,18 @@
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 
-import java.awt.*;
 
-import javax.swing.*;
-
-
-
-public class CreateAppointment extends AndroidWindow {
+public class EditAppointment extends AndroidWindow {
 	
 		@Override
 		public void setup(Container panel) {
@@ -20,7 +26,7 @@ public class CreateAppointment extends AndroidWindow {
 			
 			JLabel eventLabel = new JLabel("Event");
 //			eventLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-			JTextArea eventField = new JTextArea(2, 30);
+			JTextArea eventField = new JTextArea("Wake up", 2, 30);
 			eventField.setAlignmentX(Component.LEFT_ALIGNMENT);
 			eventField.setMaximumSize(eventField.getPreferredSize());
 //			fields.add(Box.createHorizontalGlue());
@@ -67,7 +73,7 @@ public class CreateAppointment extends AndroidWindow {
 			fieldsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 			JLabel locationLabel = new JLabel("Where");
 			locationLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-			JTextArea locationField = new JTextArea(2, 30);
+			JTextArea locationField = new JTextArea("Bed", 2, 30);
 			locationField.setAlignmentX(Component.LEFT_ALIGNMENT);
 			locationField.setMaximumSize(locationField.getPreferredSize());
 			fieldsPanel.add(locationLabel);
@@ -77,9 +83,15 @@ public class CreateAppointment extends AndroidWindow {
 			JPanel buttonsPanel = new JPanel();
 			buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.LINE_AXIS));
 			JButton saveButton = new JButton("Save");
+			JButton editButton = new JButton("Edit");
+			JButton deleteButton = new JButton("Delete");
 			JButton back = new JButton("Back");
 			buttonsPanel.add(Box.createHorizontalGlue());
 			buttonsPanel.add(saveButton);
+			buttonsPanel.add(Box.createRigidArea(new Dimension(10, 0)));
+			buttonsPanel.add(editButton);
+			buttonsPanel.add(Box.createRigidArea(new Dimension(10, 0)));
+			buttonsPanel.add(deleteButton);
 			buttonsPanel.add(Box.createRigidArea(new Dimension(10, 0)));
 			buttonsPanel.add(back);
 			buttonsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -88,7 +100,6 @@ public class CreateAppointment extends AndroidWindow {
 			panel.add(fieldsPanel);
 			panel.add(Box.createRigidArea(new Dimension(0, 10)));
 			panel.add(buttonsPanel);
-		
 	}
 
 }

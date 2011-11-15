@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+
 public class DoughnutCalendar {
 	private static final long serialVersionUID = 3827356193478438879L;
 
@@ -40,7 +41,7 @@ public class DoughnutCalendar {
 	    JComponent buttons = new JPanel();
 	    buttons.setBorder(BorderFactory.createLineBorder(Color.black));
 
-	    win = new CreateAppointment();
+	    win = new EditAppointment();
 	    win.setup(content);
 
 	    JButton back = new JButton("Back");
