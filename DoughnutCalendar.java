@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,12 +34,13 @@ public class DoughnutCalendar {
 	    
 	    
 	    JPanel content = new JPanel();
+	    content.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 	    Container content_wrapper = new JScrollPane(content);
 	    //content_wrapper.add(content);
 	    JComponent buttons = new JPanel();
 	    buttons.setBorder(BorderFactory.createLineBorder(Color.black));
 
-	    win = new MonthlyView();
+	    win = new CreateAppointment();
 	    win.setup(content);
 
 	    JButton back = new JButton("Back");
