@@ -13,7 +13,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-public class WeeklyView extends AndroidWindow {
+public class WeeklyView extends AndroidWindow implements ActionListener {
 	private Container jpanel;
 	private String[] week = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
 
@@ -61,11 +61,11 @@ public class WeeklyView extends AndroidWindow {
 	private void init() {
 		JButton prevWeekButton = new JButton("<");
 		prevWeekButton.setActionCommand("previous");
-		prevWeekButton.addActionListener((ActionListener) this);
+		prevWeekButton.addActionListener(this);
 
 		JButton nextWeekButton = new JButton(">");
 		nextWeekButton.setActionCommand("next");
-		nextWeekButton.addActionListener((ActionListener) this);
+		nextWeekButton.addActionListener(this);
 
 		JPanel nav_panel = new JPanel();
 		nav_panel.setLayout(new GridLayout(1, 3));
