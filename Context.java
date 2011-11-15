@@ -16,19 +16,19 @@ public class Context {
 		return c;
 	}
 
-	public CalendarDate getView_date() {
+	public CalendarDate getViewDate() {
 		return view_date;
 	}
 
-	public void setView_date(CalendarDate view_date) {
+	public void setViewDate(CalendarDate view_date) {
 		this.view_date = view_date;
 	}
 
-	public CalendarDate getCurrent_date() {
+	public CalendarDate getCurrentDate() {
 		return clock_date;
 	}
 
-	public void setCurrent_date(CalendarDate current_date) {
+	public void setCurrentDate(CalendarDate current_date) {
 		this.clock_date = current_date;
 	}
 	
