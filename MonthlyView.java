@@ -1,7 +1,6 @@
 //import javax.swing.JPanel;
 
 import java.awt.Container;
-import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
