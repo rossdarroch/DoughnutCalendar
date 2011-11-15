@@ -1,13 +1,19 @@
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import calendar_ex.CalendarDate;
 
 
 public class Context {
-	CalendarDate clock_date; // real world clock
-	CalendarDate view_date; // the date we are viewing
+	private CalendarDate clock_date; // real world clock
+	private CalendarDate view_date; // the date we are viewing
 	
+	private static Context c;
 	
 	public static Context getContext() {
-		return null;
+		if(c == null)
+			c = new Context();
+		return c;
 	}
 
 	public CalendarDate getView_date() {
@@ -25,9 +31,13 @@ public class Context {
 	public void setCurrent_date(CalendarDate current_date) {
 		this.clock_date = current_date;
 	}
-
-	public Context(CalendarDate current_date) {
-		super();
-		this.clock_date = current_date;
+	
+	Context() {
+		Calendar now = new GregorianCalendar();
+		int d = now.get(Calendar.DAY_OF_MONTH);
+		int m = now.get(Calendar.MONTH);
+		int y = now.get(Calendar.YEAR);
+		view_date = new CalendarDate(d,	m, y);
+		clock_date = new CalendarDate(d, m, y);
 	}
 }
