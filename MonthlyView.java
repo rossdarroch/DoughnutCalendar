@@ -1,6 +1,7 @@
 //import javax.swing.JPanel;
 
 import java.awt.Container;
+import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
@@ -31,21 +32,25 @@ public class MonthlyView extends AndroidWindow {
 			}
 		};
 		JTable monthTable = new JTable(dataModel);
+		monthTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		monthTable.setRowSelectionAllowed(false);
 		monthTable.setCellSelectionEnabled(true);
 		monthTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		//monthTable.setPreferredScrollableViewportSize(new Dimension(480, 800));
+		//monthTable.setPreferredScrollableViewportSize(new Dimension(400, 500));
+		//
+		monthTable.setRowHeight(60);
+		//monthTable.setCol
 		monthTable.doLayout();
 		
 		JScrollPane scrollpane = new JScrollPane(monthTable);
-		
-		
+		//scrollpane.setSize(panel.getSize());
 		
 		JTable rowTable = new RowNumberTable(monthTable, 45);
 		scrollpane.setRowHeaderView(rowTable);
 		scrollpane.setCorner(JScrollPane.UPPER_LEFT_CORNER,
 		    rowTable.getTableHeader());
-		
+		monthTable.setPreferredScrollableViewportSize(new Dimension(panel.getWidth()-rowTable.getWidth(), panel.getHeight()));
+		monthTable.doLayout();
 		panel.add(scrollpane);
 	}
 }
