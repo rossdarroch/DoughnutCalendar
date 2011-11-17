@@ -43,6 +43,7 @@ public class DoughnutCalendar {
 		frame = new JFrame();
 
 		frame.setTitle("Nexus Sieben");
+		frame.addWindowListener(new WinHandler());
 
 		// 70px for header, 730px for content, 100px for buttons
 		frame.setSize(480, 730 + 70 + 100);
@@ -89,6 +90,13 @@ public class DoughnutCalendar {
 		new DoughnutCalendar();
 	}
 
+	private class WinHandler extends WindowAdapter {
+		public void windowClosing(WindowEvent e) {
+			frame.dispose();
+			System.exit(0);
+		}
+	}
+
 	private class BackButtonHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			win.BackButtonPressed(frame, e);
@@ -117,6 +125,7 @@ public class DoughnutCalendar {
 		public ClockLabel() {
 			super();
 			changeDate();
+
 			Timer t = new Timer(1000, this);
 			t.start();
 		}
