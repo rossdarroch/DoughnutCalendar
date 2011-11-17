@@ -23,15 +23,33 @@ public class DoughnutCalendar {
 	AndroidWindow win;
 	JFrame frame;
 
+	/*
+	 * Comments on Layout
+	 * 
+	 * Android phone is 480*800px
+	 * 
+	 * We put 100px for 4 bottom buttons. Bottom buttons are not part of the
+	 * screen, so we add 100px to the Root window. Therefore root window is
+	 * 480*900px.
+	 * 
+	 * Header takes 70px (now just a clock). These pixels are taken away from
+	 * the "real" 800px -- therefore we have 730px for JPanel content.
+	 * 
+	 * JPanel content is wrapped in a JScrollPane, so you can increase the
+	 * vertical size of content arbitrarily. If content height is more than
+	 * 730px, scroll bars will appear ("sliding" emulation).
+	 * 
+	 * This means all apps must fit to 480px width (forced restriction) and
+	 * any height, but only 730px are visible at once.
+	 */
 	public DoughnutCalendar() {
 		frame = new JFrame();
 
 		frame.setTitle("Nexus Sieben");
-		frame.addWindowListener(new WinHandler());
 
-		// 800px for content, 100px for buttons
-		frame.setSize(480, 800 + 100);
-		frame.setLocationRelativeTo(null); // center
+		// 70px for header, 730px for content, 100px for buttons
+		frame.setSize(480, 730 + 70 + 100);
+		frame.setLocationRelativeTo(null); // center the "Android"
 		frame.setLayout(new BorderLayout());
 
 		JPanel content = new JPanel();
@@ -74,13 +92,6 @@ public class DoughnutCalendar {
 		new DoughnutCalendar();
 	}
 
-	private class WinHandler extends WindowAdapter {
-		public void windowClosing(WindowEvent e) {
-			frame.dispose();
-			System.exit(0);
-		}
-	}
-
 	private class BackButtonHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			win.BackButtonPressed(frame, e);
@@ -109,7 +120,6 @@ public class DoughnutCalendar {
 		public ClockLabel() {
 			super();
 			changeDate();
-			
 			Timer t = new Timer(1000, this);
 			t.start();
 		}
@@ -119,11 +129,12 @@ public class DoughnutCalendar {
 			String h = new SimpleDateFormat("H").format(now);
 			String m = new SimpleDateFormat("m").format(now);
 			String s = new SimpleDateFormat("s").format(now);
-			h = h.length() == 1? "0" + h : h;
-			m = m.length() == 1? "0" + m : m;
-			s = s.length() == 1? "0" + s : s;
+			h = h.length() == 1 ? "0" + h : h;
+			m = m.length() == 1 ? "0" + m : m;
+			s = s.length() == 1 ? "0" + s : s;
 			setText(h + ":" + m + ":" + s);
 		}
+
 		public void actionPerformed(ActionEvent ae) {
 			changeDate();
 		}
