@@ -40,13 +40,10 @@ public class DoughnutCalendar {
 	    JComponent buttons = new JPanel();
 	    buttons.setBorder(BorderFactory.createLineBorder(Color.black));
 
-<<<<<<< HEAD
 	    win = new CreateAppointment();
-=======
 	    //win = new EditAppointment();
 	    //win.setup(content);
 	    win = new MonthlyView();
->>>>>>> branch 'master' of https://jeopard@github.com/DangerousDoughnuts/DoughnutCalendar.git
 	    win.setup(content);
 
 	    JButton back = new JButton("Back");
