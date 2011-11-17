@@ -3,6 +3,8 @@
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -14,7 +16,25 @@ import javax.swing.JTable;
 import calendar_ex.CalendarDate;
 
 public class MonthlyView extends AndroidWindow {
-
+	
+	private String vmonth;
+	private int fweek, fday, fmonth;
+	private Context c;
+	private CalendarDate vdate;
+	private int selr, selc;
+	
+	public MonthlyView() {
+		super();
+		c = Context.getContext();
+		vdate = c.getViewDate();
+		vmonth = CalendarDate.getMonth(vdate.month);
+		GregorianCalendar cal = new GregorianCalendar(vdate.year, vdate.month, 1);
+		fweek = cal.get(Calendar.WEEK_OF_YEAR);
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		fday = cal.get(Calendar.DAY_OF_MONTH);
+		fmonth = cal.get(Calendar.MONTH);
+	}
+	
 	static class CellRenderer extends DefaultTableCellRenderer {
 		private static final long serialVersionUID = -310688878701416938L;
 
@@ -25,6 +45,7 @@ public class MonthlyView extends AndroidWindow {
 			return renderedLabel;
 		}
 	}
+	
 	@Override
 	public void setup(Container panel) {
 		TableModel dataModel = new AbstractTableModel() {
@@ -43,7 +64,10 @@ public class MonthlyView extends AndroidWindow {
 			}
 			
 			public Object getValueAt(int row, int col) {
-				return new Integer(row * col);
+				GregorianCalendar cal = new GregorianCalendar(vdate.year, vdate.month, 1);
+				cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+				cal.add(Calendar.DAY_OF_MONTH, 7*row+col-1);
+				return cal.get(Calendar.DAY_OF_MONTH);
 			}
 		};
 		JTable monthTable = new JTable(dataModel);
@@ -56,22 +80,27 @@ public class MonthlyView extends AndroidWindow {
 		//
 		monthTable.setRowHeight(60);
 		monthTable.setPreferredScrollableViewportSize(new Dimension(panel.getWidth()-100, panel.getHeight()));
-
+		
 		//monthTable.setCol
 		monthTable.doLayout();
-		
+		/*if (cal.get(Calendar.DAY_OF_MONTH) == vdate.day && cal.get(Calendar.MONTH) == vdate.month) {
+			selr = row;
+			selc = col;
+		}
+		monthTable.changeSelection(selr, selc, false, false);
+		*/
 		JScrollPane scrollpane = new JScrollPane(monthTable);
 		//scrollpane.setSize(panel.getSize());
 		
-		JTable rowTable = new RowNumberTable(monthTable, 45);
+		JLabel monthLabel = new JLabel(vmonth);
+
+		JTable rowTable = new RowNumberTable(monthTable, fweek);
 		//rowTable.setPreferredSize(new Dimension(panel.getWidth()/8, panel.getHeight()));
 		scrollpane.setRowHeaderView(rowTable);
 		scrollpane.setCorner(JScrollPane.UPPER_LEFT_CORNER,	rowTable.getTableHeader());
 		
-		Context c = Context.getContext();
-		CalendarDate vdate = c.getViewDate();
+
 		
-		JLabel monthLabel = new JLabel(CalendarDate.getMonth(vdate.month));
 		//panel.add(monthLabel);
 		panel.add(scrollpane);
 	}
