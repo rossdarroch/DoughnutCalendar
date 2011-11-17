@@ -41,7 +41,7 @@ public class DoughnutCalendar {
 	    JComponent buttons = new JPanel();
 	    buttons.setBorder(BorderFactory.createLineBorder(Color.black));
 
-	    win = new EditAppointment();
+	    win = new CreateAppointment();
 	    win.setup(content);
 
 	    JButton back = new JButton("Back");
