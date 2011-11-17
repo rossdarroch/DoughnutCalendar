@@ -11,9 +11,13 @@ import javax.swing.SwingConstants;
 import javax.swing.table.*;
 import javax.swing.JTable;
 
+import calendar_ex.CalendarDate;
+
 public class MonthlyView extends AndroidWindow {
 
 	static class CellRenderer extends DefaultTableCellRenderer {
+		private static final long serialVersionUID = -310688878701416938L;
+
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
 		{
 			JLabel renderedLabel = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -60,8 +64,15 @@ public class MonthlyView extends AndroidWindow {
 		//scrollpane.setSize(panel.getSize());
 		
 		JTable rowTable = new RowNumberTable(monthTable, 45);
+		//rowTable.setPreferredSize(new Dimension(panel.getWidth()/8, panel.getHeight()));
 		scrollpane.setRowHeaderView(rowTable);
 		scrollpane.setCorner(JScrollPane.UPPER_LEFT_CORNER,	rowTable.getTableHeader());
+		
+		Context c = Context.getContext();
+		CalendarDate vdate = c.getViewDate();
+		
+		JLabel monthLabel = new JLabel(CalendarDate.getMonth(vdate.month));
+		//panel.add(monthLabel);
 		panel.add(scrollpane);
 	}
 }
