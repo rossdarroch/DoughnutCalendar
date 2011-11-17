@@ -1,8 +1,5 @@
-import java.awt.Font;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
-import javax.swing.JLabel;
 
 import calendar_ex.CalendarDate;
 
@@ -10,7 +7,6 @@ import calendar_ex.CalendarDate;
 public class Context {
 	private CalendarDate clock_date; // real world clock
 	private CalendarDate view_date; // the date we are viewing
-	private Font font;
 	
 	private static Context c;
 	
@@ -36,10 +32,6 @@ public class Context {
 		this.clock_date = current_date;
 	}
 	
-	public Font getFont() {
-		return font;
-	}
-	
 	Context() {
 		Calendar now = new GregorianCalendar();
 		int d = now.get(Calendar.DAY_OF_MONTH);
@@ -48,10 +40,6 @@ public class Context {
 		view_date = new CalendarDate(d,	m, y);
 		clock_date = new CalendarDate(d, m, y);
 		
-		// This is the default font for the calendar
-		JLabel eventLabel = new JLabel("Event");
-		font = new Font(eventLabel.getFont().getFontName(),
-				eventLabel.getFont().getStyle(), 3 * eventLabel.getFont()
-						.getSize());
 	}
+	
 }

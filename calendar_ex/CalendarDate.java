@@ -1,5 +1,7 @@
 package calendar_ex;
 
+import java.text.DateFormatSymbols;
+
 public class CalendarDate {
 	
 	// class to store a date for use with the calendar
@@ -7,6 +9,7 @@ public class CalendarDate {
 	
 	// constants to provide an initial day for the date id
 	private static int FIRST_DAY = 1, FIRST_MONTH = 1, FIRST_YEAR = 2009;
+	private static DateFormatSymbols dsym = new DateFormatSymbols();
 	
 	// day, month and year of the Date
 	public int day, month, year;
@@ -158,6 +161,9 @@ public class CalendarDate {
 		}
 	}
 
+	public static String getMonth(int m) {
+		return dsym.getMonths()[m-1];
+	}
 	public String toString() {
 		// turn the CalendarDate object into a string
 		
