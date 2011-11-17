@@ -104,4 +104,5 @@ public class MonthlyView extends AndroidWindow {
 		//panel.add(monthLabel);
 		panel.add(scrollpane);
 	}
+	
 }

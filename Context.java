@@ -39,5 +39,7 @@ public class Context {
 		int y = now.get(Calendar.YEAR);
 		view_date = new CalendarDate(d,	m, y);
 		clock_date = new CalendarDate(d, m, y);
+		
 	}
+	
 }
