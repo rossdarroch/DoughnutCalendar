@@ -35,6 +35,7 @@ public class DoughnutCalendar {
 		frame.setLayout(new BorderLayout());
 
 		JPanel content = new JPanel();
+		content.setSize(480, 730);
 		content.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		Container content_wrapper = new JScrollPane(content);
 		JComponent buttons = new JPanel();
@@ -45,7 +46,7 @@ public class DoughnutCalendar {
 		header.add(new ClockLabel());
 		header.setSize(480, 70);
 
-		win = new WeeklyView();
+		win = new MonthlyView();
 		win.setup(content);
 
 		JButton back = new JButton("Back");
