@@ -64,4 +64,5 @@ public class MonthlyView extends AndroidWindow {
 		scrollpane.setCorner(JScrollPane.UPPER_LEFT_CORNER,	rowTable.getTableHeader());
 		panel.add(scrollpane);
 	}
+	
 }
