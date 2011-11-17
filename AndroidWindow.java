@@ -3,7 +3,6 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 public abstract class AndroidWindow {
 	public void BackButtonPressed(JFrame frame, ActionEvent e) {
