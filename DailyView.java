@@ -1,6 +1,4 @@
 
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,13 +11,10 @@ import javax.swing.table.*;
 import javax.swing.JTable;
 
 public class DailyView extends AndroidWindow implements ActionListener {
-	private Container jPanel;
-
 	@Override
-	public void setup(Container panel) {
+	public void setup(JPanel panel) {
 		TableModel dataModel = new AbstractTableModel() {
 			private static final long serialVersionUID = 89037589235789234L;
-			private int[] hours = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,29,20,21,22,23};
 			public int getColumnCount() {
 				return 2;
 			}

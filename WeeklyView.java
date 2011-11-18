@@ -36,7 +36,7 @@ public class WeeklyView extends AndroidWindow implements ActionListener {
 		}
 	}
 	
-	public void setup(Container panel) {
+	public void setup(JPanel panel) {
 		jpanel = panel;
 
 		@SuppressWarnings("serial")

@@ -1,12 +1,12 @@
 
 
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -49,7 +49,7 @@ public class MonthlyView extends AndroidWindow {
 	}
 	
 	@Override
-	public void setup(Container panel) {
+	public void setup(JPanel panel) {
 		TableModel dataModel = new AbstractTableModel() {
 			private static final long serialVersionUID = 89037589235789234L;
 			private String[] week = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
