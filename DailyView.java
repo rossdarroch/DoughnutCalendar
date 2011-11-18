@@ -1,16 +1,32 @@
-
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.*;
 import javax.swing.JTable;
 
+
+
 public class DailyView extends AndroidWindow implements ActionListener {
+	
+	@SuppressWarnings("serial")
+	static class CellRenderer extends DefaultTableCellRenderer {
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+		{
+			JLabel renderedLabel = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			renderedLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			return renderedLabel;
+		}
+	}
+	
+	
 	@Override
 	public void setup(JPanel panel) {
 		TableModel dataModel = new AbstractTableModel() {
@@ -20,7 +36,7 @@ public class DailyView extends AndroidWindow implements ActionListener {
 			}
 
 			public int getRowCount() {
-				return 10;
+				return 24;
 			}
 
 			public Object getValueAt(int row, int col) {
@@ -29,7 +45,8 @@ public class DailyView extends AndroidWindow implements ActionListener {
 		};
 		//panel.setSize(480, 800 + 100);
 		JTable DailyTable = new JTable(dataModel);
-		DailyTable.setSize(480,1200);
+		DailyTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		DailyTable.setDefaultRenderer(Object.class, new CellRenderer());
 		DailyTable.setRowSelectionAllowed(false);
 		DailyTable.setCellSelectionEnabled(true);
         DailyTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -42,7 +59,7 @@ public class DailyView extends AndroidWindow implements ActionListener {
 		scrolling.setCorner(JScrollPane.UPPER_LEFT_CORNER,
 		    rowTable.getTableHeader());
         panel.add(scrolling);
-        panel.add(rowTable);
+        
 
         JButton prevDayButton = new JButton("<");
         prevDayButton.setActionCommand("previous");
@@ -60,10 +77,10 @@ public class DailyView extends AndroidWindow implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
          if ("previous".equals(e.getActionCommand())) {
-                 new WeeklyView();
+                 new DailyView();
          }
          if ("next".equals(e.getActionCommand())) {
-                 new WeeklyView();
+                 new DailyView();
          }
     }
 }
