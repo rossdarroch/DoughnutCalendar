@@ -60,6 +60,7 @@ public abstract class AndroidWindow {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			AndroidWindow inst = maker.make();
+			this.content.removeAll();
 			inst.setup(this.content);
 		}
 		
@@ -74,5 +75,5 @@ public abstract class AndroidWindow {
 	/*
 	 * Sets up the environment
 	 */
-	public abstract void setup(Container panel);
+	public abstract void setup(JPanel panel);
 }
