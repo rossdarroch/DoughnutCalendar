@@ -22,6 +22,7 @@ import javax.swing.Timer;
 public class DoughnutCalendar {
 	AndroidWindow win;
 	JFrame frame;
+	JPanel content;
 
 	/*
 	 * Comments on Layout
@@ -53,7 +54,7 @@ public class DoughnutCalendar {
 		frame.setLocationRelativeTo(null); // center the "Android"
 		frame.setLayout(new BorderLayout());
 
-		JPanel content = new JPanel();
+		content = new JPanel();
 		content.setSize(480, 730);
 		content.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		Container content_wrapper = new JScrollPane(content);
@@ -102,29 +103,31 @@ public class DoughnutCalendar {
 
 	private class BackButtonHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			win.BackButtonPressed(frame, e);
+			win.BackButtonPressed(content, e);
 		}
 	}
 
 	private class MenuButtonHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			win.MenuButtonPressed(frame, e);
+			win.MenuButtonPressed(content, e);
 		}
 	}
 
 	private class HomeButtonHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			win.HomeButtonPressed(frame, e);
+			win.HomeButtonPressed(content, e);
 		}
 	}
 
 	private class SearchButtonHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			win.SearchButtonPressed(frame, e);
+			win.SearchButtonPressed(content, e);
 		}
 	}
 
 	private class ClockLabel extends JLabel implements ActionListener {
+		private static final long serialVersionUID = 2448324219044223863L;
+
 		public ClockLabel() {
 			super();
 			changeDate();
