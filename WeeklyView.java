@@ -1,3 +1,4 @@
+
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -35,7 +36,7 @@ public class WeeklyView extends AndroidWindow implements ActionListener {
 		}
 	}
 	
-	public void setup(Container panel) {
+	public void setup(JPanel panel) {
 		jpanel = panel;
 
 		@SuppressWarnings("serial")

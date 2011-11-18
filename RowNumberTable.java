@@ -1,7 +1,4 @@
-/*
- * This component was borrowed from
- * http://tips4java.wordpress.com/2008/11/18/row-number-table/
- */
+
 
 import java.awt.*;
 import java.beans.*;

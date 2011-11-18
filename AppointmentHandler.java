@@ -1,5 +1,5 @@
+
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -26,7 +26,7 @@ public class AppointmentHandler extends AndroidWindow {
 	protected JButton backButton;
 	protected JButton saveButton;
 
-	public void setup(Container panel) {
+	public void setup(JPanel panel) {
 
 		fieldsPanel = new JPanel();
 		// fieldsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);

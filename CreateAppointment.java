@@ -1,11 +1,9 @@
-import java.awt.*;
-
 import javax.swing.*;
 
 public class CreateAppointment extends AppointmentHandler {
 
 	
-	public void setup(Container panel) {
+	public void setup(JPanel panel) {
 		super.setup(panel);
 	}
 }

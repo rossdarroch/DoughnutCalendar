@@ -1,3 +1,4 @@
+
 import java.awt.Font;
 
 import javax.swing.JLabel;
@@ -6,6 +7,9 @@ import javax.swing.JLabel;
 public class H {
 	// Helper to get a Font of "size" em 
 
+	public static Context c = Context.getContext();
+	
+	
 	public static Font font(double size) {
 		JLabel l = new JLabel("X");
 		return new Font(
