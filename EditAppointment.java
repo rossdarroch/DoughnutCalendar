@@ -1,18 +1,11 @@
-<<<<<<< HEAD
 import java.awt.Container;
-=======
-
->>>>>>> branch 'master' of https://jeopard@github.com/DangerousDoughnuts/DoughnutCalendar.git
 import java.awt.GridLayout;
 import java.util.TimeZone;
 
 import javax.swing.JButton;
-<<<<<<< HEAD
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-=======
 import javax.swing.JPanel;
->>>>>>> branch 'master' of https://jeopard@github.com/DangerousDoughnuts/DoughnutCalendar.git
 
 public class EditAppointment extends AppointmentHandler {
 
