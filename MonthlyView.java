@@ -1,4 +1,4 @@
-//import javax.swing.JPanel;
+
 
 import java.awt.Component;
 import java.awt.Container;
@@ -22,6 +22,8 @@ public class MonthlyView extends AndroidWindow {
 	private Context c;
 	private CalendarDate vdate;
 	private int selr, selc;
+
+
 	
 	public MonthlyView() {
 		super();
@@ -104,5 +106,4 @@ public class MonthlyView extends AndroidWindow {
 		//panel.add(monthLabel);
 		panel.add(scrollpane);
 	}
-	
 }
