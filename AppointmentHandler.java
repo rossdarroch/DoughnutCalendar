@@ -25,6 +25,7 @@ public class AppointmentHandler extends AndroidWindow {
 	protected JPanel buttonsPanel;
 	protected JButton backButton;
 	protected JButton saveButton;
+	protected JPanel buttonsWrapPanel;
 
 	public void setup(JPanel panel) {
 
@@ -132,7 +133,7 @@ public class AppointmentHandler extends AndroidWindow {
 		buttonsPanel.setMaximumSize(buttonsPanel.getPreferredSize());
 
 		// Panel for displaying the buttons on the right
-		JPanel buttonsWrapPanel = new JPanel();
+		buttonsWrapPanel = new JPanel();
 		buttonsWrapPanel.setLayout(new BoxLayout(buttonsWrapPanel,
 				BoxLayout.LINE_AXIS));
 		buttonsWrapPanel.add(Box.createHorizontalGlue());
