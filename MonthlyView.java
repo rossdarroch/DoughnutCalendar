@@ -20,23 +20,44 @@ public class MonthlyView extends AndroidWindow {
 	private String vmonth;
 	private int fweek, fday, fmonth;
 	private Context c;
-	private CalendarDate vdate;
+	private CalendarDate vdate, cdate;
 	private int selr, selc;
-
-
+	private int[] days;
+	
+	//BIG FAT WARNING: in Java's Calendar months are ZERO-BASED!!!
 	
 	public MonthlyView() {
 		super();
 		c = Context.getContext();
 		vdate = c.getViewDate();
+		cdate = c.getCurrentDate();
 		vmonth = CalendarDate.getMonth(vdate.month);
-		GregorianCalendar cal = new GregorianCalendar(vdate.year, vdate.month, 1);
+		GregorianCalendar cal = new GregorianCalendar(vdate.year, vdate.month-1, 1);
 		fweek = cal.get(Calendar.WEEK_OF_YEAR);
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		fday = cal.get(Calendar.DAY_OF_MONTH);
 		fmonth = cal.get(Calendar.MONTH);
+		days = new int[42];
+		cal.set(vdate.year, vdate.month-1, 1); //reinitialise calendar
+		cal.getTime(); //fucking explain that - without it the next line is processed incorrectly
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY); //first element in the table
+		System.out.println(cal.getTime());
+		int counter = 0;
+		while (counter < 42) {
+		days[counter] = cal.get(Calendar.DAY_OF_MONTH);
+		cal.add(Calendar.DAY_OF_MONTH, 1);
+		if (cal.get(Calendar.MONTH) == vdate.month-1 && days[counter] == vdate.day) {
+			selr = counter/7;
+			selc = counter%7;
+		}
+		counter++;
+		}
 	}
 	
+	public void setSelectedCell (int r, int c) {
+		selr = r;
+		selc = c;
+	}
 	static class CellRenderer extends DefaultTableCellRenderer {
 		private static final long serialVersionUID = -310688878701416938L;
 
@@ -53,6 +74,7 @@ public class MonthlyView extends AndroidWindow {
 		TableModel dataModel = new AbstractTableModel() {
 			private static final long serialVersionUID = 89037589235789234L;
 			private String[] week = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+						
 			public int getColumnCount() {
 				return 7;
 			}
@@ -66,10 +88,7 @@ public class MonthlyView extends AndroidWindow {
 			}
 			
 			public Object getValueAt(int row, int col) {
-				GregorianCalendar cal = new GregorianCalendar(vdate.year, vdate.month, 1);
-				cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-				cal.add(Calendar.DAY_OF_MONTH, 7*row+col-1);
-				return cal.get(Calendar.DAY_OF_MONTH);
+				return days[7*row+col];
 			}
 		};
 		JTable monthTable = new JTable(dataModel);
@@ -83,14 +102,8 @@ public class MonthlyView extends AndroidWindow {
 		monthTable.setRowHeight(60);
 		monthTable.setPreferredScrollableViewportSize(new Dimension(panel.getWidth()-100, panel.getHeight()));
 		
-		//monthTable.setCol
 		monthTable.doLayout();
-		/*if (cal.get(Calendar.DAY_OF_MONTH) == vdate.day && cal.get(Calendar.MONTH) == vdate.month) {
-			selr = row;
-			selc = col;
-		}
-		monthTable.changeSelection(selr, selc, false, false);
-		*/
+				
 		JScrollPane scrollpane = new JScrollPane(monthTable);
 		//scrollpane.setSize(panel.getSize());
 		
@@ -102,7 +115,8 @@ public class MonthlyView extends AndroidWindow {
 		scrollpane.setCorner(JScrollPane.UPPER_LEFT_CORNER,	rowTable.getTableHeader());
 		
 
-		
+		monthTable.changeSelection(selr, selc, false, false);
+
 		//panel.add(monthLabel);
 		panel.add(scrollpane);
 	}
