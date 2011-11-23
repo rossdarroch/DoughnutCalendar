@@ -1,4 +1,3 @@
-
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,14 +11,20 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.Popup;
+import javax.swing.PopupFactory;
 
-public class AppointmentHandler extends AndroidWindow {
+public abstract class AppointmentHandler extends AndroidWindow {
 	protected JTextArea eventField;
 	protected Font font;
 	protected JTextField fromField;
+	protected Popup fromPopup;
 	protected JTextField fromTimeField;
+	protected Popup fromTimePopup;
 	protected JTextField toField;
+	protected Popup toPopup;
 	protected JTextField toTimeField;
+	protected Popup toTimePopup;
 	protected JTextArea locationField;
 	protected JPanel fieldsPanel;
 	protected JPanel buttonsPanel;
@@ -37,8 +42,7 @@ public class AppointmentHandler extends AndroidWindow {
 		// fieldsPanel.setPreferredSize(new Dimension(470, 500));
 
 		JLabel eventLabel = new JLabel("Event");
-		font = new Font(eventLabel.getFont().getFontName(), eventLabel
-				.getFont().getStyle(), 3 * eventLabel.getFont().getSize());
+		font = H.font();
 		eventLabel.setFont(font);
 		// eventLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		eventField = new JTextArea(2, 12);
@@ -68,9 +72,13 @@ public class AppointmentHandler extends AndroidWindow {
 		fromField = new JTextField("15/11/2011");
 		fromField.setFont(font);
 		fromField.setMaximumSize(fromField.getPreferredSize());
+		fromField.setEditable(false);
+		fromField.setToolTipText("Click to edit");
 		fromTimeField = new JTextField("09:00");
 		fromTimeField.setFont(font);
 		fromTimeField.setMaximumSize(fromTimeField.getPreferredSize());
+		fromTimeField.setEditable(false);
+		fromTimeField.setToolTipText("Click to edit");
 		fromFieldsPanel.add(fromField);
 		fromFieldsPanel.add(Box.createRigidArea(new Dimension(15, 0)));
 		fromFieldsPanel.add(fromTimeField);
@@ -78,6 +86,7 @@ public class AppointmentHandler extends AndroidWindow {
 		fieldsPanel.add(fromFieldsPanel);
 		fieldsPanel.setFont(font);
 		fieldsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+
 		JLabel toLabel = new JLabel("To");
 		toLabel.setFont(font);
 		toLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -90,9 +99,13 @@ public class AppointmentHandler extends AndroidWindow {
 		toField = new JTextField("15/11/2011");
 		toField.setFont(font);
 		toField.setMaximumSize(toField.getPreferredSize());
+		toField.setEditable(false);
+		toField.setToolTipText("Click to edit");
 		toTimeField = new JTextField("10:00");
 		toTimeField.setFont(font);
 		toTimeField.setMaximumSize(toTimeField.getPreferredSize());
+		toTimeField.setEditable(false);
+		toTimeField.setToolTipText("Click to edit");
 		toFieldsPanel.add(toField);
 		toFieldsPanel.add(Box.createRigidArea(new Dimension(15, 0)));
 		toFieldsPanel.add(toTimeField);
@@ -116,9 +129,9 @@ public class AppointmentHandler extends AndroidWindow {
 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		panel.add(fieldsPanel);
-		
+
 		buttonsPanel = new JPanel(new GridLayout(1, 2, 10, 10));
-//		buttonsPanel.setLayout(new GridLayout(2, 2, 10, 10));
+		// buttonsPanel.setLayout(new GridLayout(2, 2, 10, 10));
 		saveButton = new JButton("Save");
 		saveButton.setFont(font);
 		backButton = new JButton("Back");
@@ -126,8 +139,8 @@ public class AppointmentHandler extends AndroidWindow {
 		// buttonsPanel.add(Box.createHorizontalGlue());
 		buttonsPanel.add(saveButton);
 		// buttonsPanel.add(Box.createRigidArea(new Dimension(10, 0)));
-//		JLabel emptyLabel = new JLabel("asdf");
-//		buttonsPanel.add(emptyLabel);
+		// JLabel emptyLabel = new JLabel("asdf");
+		// buttonsPanel.add(emptyLabel);
 		buttonsPanel.add(backButton);
 		buttonsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		buttonsPanel.setMaximumSize(buttonsPanel.getPreferredSize());
@@ -139,10 +152,10 @@ public class AppointmentHandler extends AndroidWindow {
 		buttonsWrapPanel.add(Box.createHorizontalGlue());
 		buttonsWrapPanel.add(buttonsPanel);
 		buttonsWrapPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-		
 
 		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(buttonsWrapPanel);
+		
 	}
 
 }

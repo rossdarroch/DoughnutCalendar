@@ -34,6 +34,13 @@ public class CalendarDate {
 		
 		dateID = id;
 	}
+	
+	public CalendarDate(CalendarDate cd) {
+		day = cd.day;
+		month = cd.month;
+		year = cd.year;
+		dateID = cd.dateID;
+	}
 
 	public static int getDateID(CalendarDate cd){
 		// from the date, get the appropriate date ID
@@ -169,5 +176,14 @@ public class CalendarDate {
 		
 		return "" + day + "-"+month+"-"+year;
 		
+	}
+	
+	public void incrementMonth() {
+		if (month == 12) {
+			year++;
+			month = 1;
+		}
+		else
+			month++;
 	}
 }

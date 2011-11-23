@@ -43,7 +43,7 @@ public class CalendarEx {
 
 		     String s;
 		     s = bis.readLine();
-		     int the_date, id;
+		     int start_date, end_date, id;
 		     int start_time_h, start_time_m, end_time_h, end_time_m;
 		     
 		     String description, location, category;
@@ -58,10 +58,11 @@ public class CalendarEx {
 		    	 if(id > max_id)
 		    		 max_id = id;
 		    	 
-		    	 the_date = Integer.parseInt(bis.readLine());		    	 
+		    	 start_date = Integer.parseInt(bis.readLine());		    	 
 			     start_time_h = Integer.parseInt(bis.readLine());
 			     start_time_m = Integer.parseInt(bis.readLine());
 			     
+			     end_date = Integer.parseInt(bis.readLine());
 			     end_time_h = Integer.parseInt(bis.readLine());
 			     end_time_m = Integer.parseInt(bis.readLine());
 			     
@@ -73,8 +74,9 @@ public class CalendarEx {
 			     reminder = Integer.parseInt(bis.readLine());
 			     
 			     // create the appointment object
-			     ap = new Appointment(new CalendarDate(the_date), 
+			     ap = new Appointment(new CalendarDate(start_date), 
 			    		 			  new CalendarTime(start_time_h, start_time_m),
+			    		 			  new CalendarDate(end_date),
 			    		 			  new CalendarTime(end_time_h, end_time_m),
 			    		 			  description,
 			    		 			  location,
@@ -128,10 +130,11 @@ public class CalendarEx {
 				 
 				 p.println("<");				 
 				 p.println(ap.getID());
-				 p.println(CalendarDate.getDateID(ap.date));
+				 p.println(CalendarDate.getDateID(ap.start_date));
 				 p.println(ap.start_time.hr);
 				 p.println(ap.start_time.min);
 
+				 p.println(CalendarDate.getDateID(ap.end_date));
 				 p.println(ap.end_time.hr);
 				 p.println(ap.end_time.min);
 				 
