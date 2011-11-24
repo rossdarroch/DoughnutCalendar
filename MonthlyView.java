@@ -99,7 +99,7 @@ public class MonthlyView extends AndroidWindow {
 		monthTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		//monthTable.setPreferredScrollableViewportSize(new Dimension(400, 500));
 		//
-		monthTable.setRowHeight(60);
+		monthTable.setRowHeight(120);
 		monthTable.setPreferredScrollableViewportSize(new Dimension(panel.getWidth()-100, panel.getHeight()));
 		
 		monthTable.doLayout();

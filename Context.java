@@ -36,9 +36,9 @@ public class Context {
 	Context() {
 		Calendar now = new GregorianCalendar();
 		int d = now.get(Calendar.DAY_OF_MONTH);
-		int m = now.get(Calendar.MONTH);
+		int m = now.get(Calendar.MONTH)+1;  //January == 0 in Calendar
 		int y = now.get(Calendar.YEAR);
-		view_date = new CalendarDate(d,	m, y);
+		view_date = new CalendarDate(d,	m, y); //January == 1 in CalendarDate
 		clock_date = new CalendarDate(d, m, y);
 		
 	}
