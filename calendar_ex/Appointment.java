@@ -39,6 +39,23 @@ public class Appointment {
 	}
 
 	public Appointment(CalendarDate s_date, CalendarTime s_time,
+			CalendarTime e_time, String desc) {
+		ap_id = 0;
+
+		start_date = s_date;
+		start_time = s_time;
+
+		end_date = s_date;
+		end_time = e_time;
+
+		description = desc;
+		location = "";
+		category = "";
+		recur = Recurrence.NONE;
+		reminder = 0;
+	}
+
+	public Appointment(CalendarDate s_date, CalendarTime s_time,
 			CalendarDate e_date, CalendarTime e_time, String desc, String loc) {
 		ap_id = 0;
 
@@ -46,6 +63,24 @@ public class Appointment {
 		start_time = s_time;
 
 		end_date = e_date;
+		end_time = e_time;
+
+		description = desc;
+
+		location = loc;
+		category = "";
+		recur = Recurrence.NONE;
+		reminder = 0;
+	}
+
+	public Appointment(CalendarDate s_date, CalendarTime s_time,
+			CalendarTime e_time, String desc, String loc) {
+		ap_id = 0;
+
+		start_date = s_date;
+		start_time = s_time;
+
+		end_date = s_date;
 		end_time = e_time;
 
 		description = desc;
@@ -75,6 +110,23 @@ public class Appointment {
 	}
 
 	public Appointment(CalendarDate s_date, CalendarTime s_time,
+			CalendarTime e_time, String desc, String loc, String cat) {
+		ap_id = 0;
+
+		start_date = s_date;
+		start_time = s_time;
+
+		end_date = s_date;
+		end_time = e_time;
+
+		description = desc;
+		location = loc;
+		category = cat;
+		recur = Recurrence.NONE;
+		reminder = 0;
+	}
+
+	public Appointment(CalendarDate s_date, CalendarTime s_time,
 			CalendarDate e_date, CalendarTime e_time, String desc, String loc,
 			String cat, Recurrence rec, int rem) {
 		ap_id = 0;
@@ -83,6 +135,25 @@ public class Appointment {
 		start_time = s_time;
 
 		end_date = e_date;
+		end_time = e_time;
+
+		description = desc;
+
+		location = loc;
+		category = cat;
+		recur = rec;
+		reminder = rem;
+	}
+
+	public Appointment(CalendarDate s_date, CalendarTime s_time,
+			CalendarTime e_time, String desc, String loc, String cat,
+			Recurrence rec, int rem) {
+		ap_id = 0;
+
+		start_date = s_date;
+		start_time = s_time;
+
+		end_date = s_date;
 		end_time = e_time;
 
 		description = desc;
@@ -200,8 +271,7 @@ public class Appointment {
 				cur_date.incrementMonth();
 			}
 			return ids;
-		}
-		else if (recur == Recurrence.YEARLY)
+		} else if (recur == Recurrence.YEARLY)
 			gap = 365;
 		else
 			gap = 9999;
