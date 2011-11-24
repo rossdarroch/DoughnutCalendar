@@ -13,35 +13,46 @@ import javax.swing.JPanel;
 
 
 public abstract class AndroidWindow {
+	private JFrame views = new JFrame();
+	SwitchViewButton<AndroidWindow, MakeDailyView > dayButton;
+	SwitchViewButton<AndroidWindow, MakeWeeklyView > weekButton;
+	SwitchViewButton<AndroidWindow, MakeMonthlyView > monthButton;
 	
-	public void BackButtonPressed(JPanel content, ActionEvent e) {
-		JOptionPane.showMessageDialog(content, "Not implemented");
-	}
 	
-	public void MenuButtonPressed(JPanel content, ActionEvent e) {
-		JFrame views = new JFrame();
+	public AndroidWindow() {
 		views.setTitle("What to Do");
 		views.setSize(400, 200);
 		views.setLocationRelativeTo(null); // center the "Android"
 		views.setLayout(new GridLayout(2,3));
-
-		SwitchViewButton<AndroidWindow, MakeDailyView > day =
-				new SwitchViewButton<AndroidWindow, MakeDailyView>(new MakeDailyView(), "1 day", content);
-		SwitchViewButton<AndroidWindow, MakeWeeklyView > week =
-				new SwitchViewButton<AndroidWindow, MakeWeeklyView>(new MakeWeeklyView(), "7 week", content);
-		SwitchViewButton<AndroidWindow, MakeMonthlyView > month =
-				new SwitchViewButton<AndroidWindow, MakeMonthlyView>(new MakeMonthlyView(), "31 month", content);
 		
 		Font f = H.font(1.5);
 		JButton addnew = new JButton("Add New"); addnew.setFont(f);
 		JButton today = new JButton("Today"); today.setFont(f);
 		JButton calendars = new JButton("Calendars"); calendars.setFont(f);
 
-		views.add(day); views.add(week); views.add(month);
 		views.add(addnew); views.add(today); views.add(calendars);
-		
+	}
+	
+	public void BackButtonPressed(JPanel content, ActionEvent e) {
+		JOptionPane.showMessageDialog(content, "Not implemented");
+	}
+	
+	public void MenuButtonPressed(JPanel content, ActionEvent e) {
+		dayButton =
+				new SwitchViewButton<AndroidWindow, MakeDailyView>(new MakeDailyView(), "1 day", content);
+		weekButton =
+				new SwitchViewButton<AndroidWindow, MakeWeeklyView>(new MakeWeeklyView(), "7 week", content);
+		monthButton =
+				new SwitchViewButton<AndroidWindow, MakeMonthlyView>(new MakeMonthlyView(), "31 month", content);
+		views.add(dayButton); views.add(weekButton); views.add(monthButton);
 		views.setVisible(true);
-		
+	}
+	
+	public void HideMenu(){
+		views.setVisible(false);
+		views.remove(dayButton);
+		views.remove(weekButton);
+		views.remove(monthButton);
 	}
 	
 	class SwitchViewButton<Window extends AndroidWindow, Maker extends Make<AndroidWindow> > extends JButton implements ActionListener {
@@ -62,7 +73,8 @@ public abstract class AndroidWindow {
 			AndroidWindow inst = maker.make();
 			this.content.removeAll();
 			inst.setup(this.content);
-		}
+			HideMenu();
+			}
 		
 	}
 	
