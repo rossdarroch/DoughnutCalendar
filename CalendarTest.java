@@ -307,9 +307,9 @@ public class CalendarTest extends JFrame implements ActionListener, WindowListen
 	private void SetAppointment(Appointment curAp) {
 
 		id.setText(""+curAp.getID());
-		date.setText(""+curAp.date.day);
-		month.setText(""+curAp.date.month);
-		year.setText(""+curAp.date.year);
+		date.setText(""+curAp.start_date.day);
+		month.setText(""+curAp.start_date.month);
+		year.setText(""+curAp.start_date.year);
 		start_time.setText(curAp.start_time.hr + ":"+curAp.start_time.min);
 		end_time.setText(curAp.end_time.hr + ":"+curAp.end_time.min);
 		recurs.setText(""+curAp.recur);
